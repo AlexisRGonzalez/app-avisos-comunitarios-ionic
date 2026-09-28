@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear Publicación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Título</ion-label>
+    <ion-input [(ngModel)]="nuevaPub.titulo" name="titulo" placeholder="Ej: Mascota perdida"></ion-input>
+  </ion-item>
+  <ion-note color="danger" *ngIf="nuevaPub.titulo.length > 0 && nuevaPub.titulo.length < 5" class="ion-margin-start">
+    El título es muy corto (mín. 5 carac.)
+  </ion-note>
+
+  <ion-item class="ion-margin-top">
+    <ion-label position="stacked">Descripción</ion-label>
+    <ion-textarea [(ngModel)]="nuevaPub.descripcion" name="descripcion" placeholder="Mínimo 20 caracteres"></ion-textarea>
+  </ion-item>
+  <ion-note color="danger" *ngIf="nuevaPub.descripcion.length > 0 && nuevaPub.descripcion.length < 20" class="ion-margin-start">
+    La descripción es muy corta (mín. 20 carac.)
+  </ion-note>
+
+  <ion-button expand="block" fill="outline" (click)="tomarFoto()" class="ion-margin-top">
+    <ion-icon name="camera" slot="start"></ion-icon>
+    Tomar Fotografía
+  </ion-button>
+
+  <div *ngIf="nuevaPub.foto" class="ion-margin-top">
+    <img [src]="nuevaPub.foto" style="width: 100%; border-radius: 8px;" />
+  </div>
+
+  <ion-button expand="block" (click)="guardar()" class="ion-margin-top" color="success">
+    <ion-icon name="save-outline" slot="start"></ion-icon>
+    Publicar Aviso
+  </ion-button>
+</ion-content>
